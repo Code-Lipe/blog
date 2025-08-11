@@ -4,8 +4,8 @@ app = Flask(__name__)
 
 # Lista de posts temporária
 posts = [
-    {'titulo': 'Meu Primeiro Post', 'autor': 'João'},
-    {'titulo': 'Aprendendo Python', 'autor': 'Maria'}
+    {'id': 1, 'titulo': 'Meu Primeiro Post', 'autor': 'João', 'conteudo': 'O conteúdo do meu primeiro post é este aqui. É sobre...'},
+    {'id': 2, 'titulo': 'Aprendendo Python', 'autor': 'Maria', 'conteudo': 'Neste post, vou falar sobre como começar a programar em Python.'}
 ]
 
 @app.route("/")
@@ -14,7 +14,12 @@ def index():
 
 @app.route("/posts/<int:post_id>")
 def show_post(post_id):
-    return f"Você está visualizando o post de ID {post_id}"
+    post = None
+    for p in posts:
+        if p['id'] == post_id:
+            post = p
+            break
+    return render_template("post.html", post=post)
 
 
 if __name__ == '__main__':
