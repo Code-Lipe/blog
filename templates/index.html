@@ -8,5 +8,13 @@
 <body>
     <h1>Bem-vindo ao Meu Blog!</h1>
     <p>Este é o primeiro passo pra construir um blog de verdade</p>
+
+    {% for post in posts %}
+        <div>
+            <h2>{{ post.titulo }}</h2>
+            <p>{{ post.autor }}</p>
+        </div>
+        <hr>
+    {% endfor %}
 </body>
 </html>
