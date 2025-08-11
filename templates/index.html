@@ -11,7 +11,11 @@
 
     {% for post in posts %}
         <div>
-            <h2>{{ post.titulo }}</h2>
+            <h2>
+                <a href="{{ url_for('show_post', post_id=post.id) }}">
+                    {{ post.titulo }}
+                </a>
+            </h2>
             <p>{{ post.autor }}</p>
         </div>
         <hr>
