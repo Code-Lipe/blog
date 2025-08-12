@@ -1,5 +1,6 @@
-from flask import Flask, render_template
-from flask_sqlalchemy import SQLAlchemy
+from flask import Flask, render_template, redirect, url_for
+from extensions import db
+from models import Post
 
 app = Flask(__name__)
 
@@ -8,27 +9,24 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Inicialização do banco de dados
-db = SQLAlchemy(app)
-
-# Lista de posts temporária
-posts = [
-    {'id': 1, 'titulo': 'Meu Primeiro Post', 'autor': 'Harry', 'conteudo': 'O conteúdo do meu primeiro post é este aqui. É sobre...'},
-    {'id': 2, 'titulo': 'Aprendendo Python', 'autor': 'Hermione', 'conteudo': 'Neste post, vou falar sobre como começar a programar em Python.'}
-]
+db.init_app(app)
 
 @app.route("/")
 def index():
-    return render_template("index.html", posts=posts)
+    posts_do_db = Post.query.all()
+    return render_template("index.html", posts=posts_do_db)
 
 @app.route("/posts/<int:post_id>")
 def show_post(post_id):
-    post = None
-    for p in posts:
-        if p['id'] == post_id:
-            post = p
-            break
-    return render_template("post.html", post=post)
+    post_do_db = Post.query.get_or_404(post_id)
+    return render_template("post.html", post=post_do_db)
 
+@app.route("/delete/<int:post_id>", methods=['POST'])
+def delete_post(post_id):
+    post_a_deletar = Post.query.get_or_404(post_id)
+    db.session.delete(post_a_deletar)
+    db.session.commit()
+    return redirect(url_for('index'))
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(debug=True)
