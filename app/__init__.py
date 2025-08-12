@@ -14,8 +14,8 @@ def create_app():
     # A instância do banco de dados é vinculada ao app aqui
     db.init_app(app)
 
-    # Importa e registra as rotas (isso evita a importação circular)
-    with app.app_context():
-        from . import routes
+    # Importa e registra o Blueprint aqui
+    from .routes import main as main_blueprint
+    app.register_blueprint(main_blueprint)
     
     return app
