@@ -4,8 +4,8 @@ app = Flask(__name__)
 
 # Lista de posts temporária
 posts = [
-    {'id': 1, 'titulo': 'Meu Primeiro Post', 'autor': 'João', 'conteudo': 'O conteúdo do meu primeiro post é este aqui. É sobre...'},
-    {'id': 2, 'titulo': 'Aprendendo Python', 'autor': 'Maria', 'conteudo': 'Neste post, vou falar sobre como começar a programar em Python.'}
+    {'id': 1, 'titulo': 'Meu Primeiro Post', 'autor': 'Harry', 'conteudo': 'O conteúdo do meu primeiro post é este aqui. É sobre...'},
+    {'id': 2, 'titulo': 'Aprendendo Python', 'autor': 'Hermione', 'conteudo': 'Neste post, vou falar sobre como começar a programar em Python.'}
 ]
 
 @app.route("/")
