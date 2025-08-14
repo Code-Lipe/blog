@@ -5,8 +5,8 @@ Este é um projeto de blog (em desenvolvimento) desenvolvido com **Flask** para 
 ### Home
 ![Descrição da imagem](src/img/blog_index.png)
 
-### Post
-![Descrição da imagem](src/img/blog_post.png)
+### Criação de Post
+![Descrição da imagem](src/img/blog_novo_post.png)
 
 ## Funcionalidades
 
