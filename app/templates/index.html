@@ -11,6 +11,12 @@
         <h1 class="text-4xl font-bold mb-6 text-center">Bem-vindo ao Meu Blog!</h1>
         <p class="mb-8 text-center text-lg">Estes são os nossos posts mais recentes:</p>
 
+        <div class="mb-8 text-center">
+            <a href="{{ url_for('main.novo_post') }}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300">
+                Criar Novo Post
+            </a>
+        </div>
+
         <div class="space-y-6">
             {% for post in posts %}
                 <div class="bg-white p-6 rounded-lg shadow-md flex justify-between items-center">

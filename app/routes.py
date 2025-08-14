@@ -21,6 +21,7 @@ def delete_post(post_id):
     post_a_deletar = Post.query.get_or_404(post_id)
     db.session.delete(post_a_deletar)
     db.session.commit()
+    flash('Postagem excluída com sucesso!', 'danger')
     return redirect(url_for('main.index'))
 
 @main.route("/novo-post", methods=['GET', 'POST'])
