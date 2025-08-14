@@ -6,6 +6,8 @@ db = SQLAlchemy()
 
 def create_app():
     app = Flask(__name__)
+
+    app.config['SECRET_KEY'] = "uma-string-bem-secreta-e-aleatoria"
     
     # Configuração do banco de dados
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
