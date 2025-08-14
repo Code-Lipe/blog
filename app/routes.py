@@ -1,6 +1,7 @@
-from flask import Blueprint, render_template, redirect, url_for
+from flask import Blueprint, render_template, redirect, url_for, flash
 from . import db
 from .models import Post
+from .forms import PostForm
 
 # Cria um Blueprint chamado 'main'
 main = Blueprint('main', __name__)
@@ -21,3 +22,19 @@ def delete_post(post_id):
     db.session.delete(post_a_deletar)
     db.session.commit()
     return redirect(url_for('main.index'))
+
+@main.route("/novo-post", methods=['GET', 'POST'])
+def novo_post():
+    form = PostForm ()
+    if form.validate_on_submit():
+        novo_post = Post(
+            titulo=form.titulo.data,
+            autor=form.autor.data,
+            conteudo=form.conteudo.data
+        )
+        db.session.add(novo_post)
+        db.session.commit()
+        flash('Sua postagem foi criada com sucesso!', 'success')
+        return redirect(url_for('main.index'))
+
+    return render_template('novo_post.html', form=form)
