@@ -13,8 +13,10 @@ Este é um projeto de blog desenvolvido com **Flask** para demonstrar os conceit
 
 ## Funcionalidades
 
-- Exibe uma lista de posts estáticos na página inicial.
+- Exibe uma lista de posts na página inicial.
 - Permite a navegação para uma página individual de cada post via URL dinâmica.
+- Formulário para adicionar posts ao blog.
+- Opção de deletar post.
 - Layout responsivo estilizado com **Tailwind CSS via CDN**.
 
 ## Tecnologias Utilizadas
