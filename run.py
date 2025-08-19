@@ -6,4 +6,4 @@ if __name__ == '__main__':
     with app.app_context():
         from app.models import Post
         db.create_all()
-    app.run(debug=True)
+    app.run(debug=False)
